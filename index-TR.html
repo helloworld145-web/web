@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine stilvolle Seite</title>
+    <style>
+        /* body öğesi için stiller */
+        body {
+            font-family: 'Roboto', sans-serif; /* Yazı tipi */
+            margin: 0;
+            padding: 0;
+            background: #fff; /* Beyaz arka plan */
+            color: #333; /* Koyu metin rengi */
+            text-align: center; /* Metni ortalama */
+        }
+
+        /* header için stiller */
+        header {
+            padding: 50px 20px; /* İç boşluk */
+            background: rgba(0, 0, 0, 0.05); /* Hafif siyah arka plan */
+            border-bottom: 2px solid #ccc; /* Alt çizgi */
+            position: relative; /* Çocuk elemanlar için konumlandırma */
+        }
+
+        /* Avatar stili */
+        .avatar {
+            width: 150px; /* Genişlik */
+            height: 150px; /* Yükseklik */
+            border: 4px solid #333; /* Kenarlık */
+            margin-bottom: 15px; /* Alt boşluk */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Gölge */
+        }
+
+        /* Açıklama metni stili */
+        .description {
+            margin-bottom: 30px; /* Alt boşluk */
+            font-size: 1.2em; /* Yazı boyutu */
+            color: #555; /* Gri renk */
+        }
+
+        /* Logo stili */
+        .logo {
+            position: absolute; /* Mutlak konumlandırma */
+            top: 20px; /* Yukarıdan boşluk */
+            right: 20px; /* Sağdan boşluk */
+            width: 100px; /* Genişlik */
+            height: auto; /* Orantılı yükseklik */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Gölge */
+        }
+
+        /* Slayt gösterisi stili */
+        .slideshow {
+            position: relative; /* Çocuk elemanları yönetmek için */
+            margin: 30px auto; /* Ortalanmış slayt gösterisi */
+            width: 500px; /* Genişlik */
+            height: 500px; /* Yükseklik */
+            overflow: hidden; /* Taşan bölümleri gizleme */
+            border-radius: 15px; /* Köşe yuvarlatma */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Gölge */
+        }
+
+        /* Slaytlar için konteyner */
+        .slides {
+            display: flex; /* Slaytları yatay hizala */
+            transition: transform 1s ease-in-out; /* Geçiş animasyonu */
+        }
+
+        /* Her bir resmin stili */
+        .slides img {
+            width: 100%; /* Tam genişlik */
+            height: 100%; /* Tam yükseklik */
+            object-fit: cover; /* Kaplama */
+            flex-shrink: 0; /* Küçülmeyi önle */
+        }
+
+        /* Slayt kontrol düğmeleri */
+        .controls {
+            position: absolute; /* Mutlak konumlandırma */
+            top: 50%; /* Dikey ortalama */
+            transform: translateY(-50%); /* Tam ortalama */
+            width: 100%; /* Tam genişlik */
+            display: flex; /* Yatay düğme hizalaması */
+            justify-content: space-between; /* Düğmeler arasında boşluk */
+            pointer-events: none; /* Tıklama engelleme */
+        }
+
+        /* Kontrol düğme stili */
+        .controls button {
+            background: rgba(0, 0, 0, 0.5); /* Şeffaf siyah arka plan */
+            border: none; /* Kenarlık yok */
+            color: #fff; /* Beyaz metin rengi */
+            padding: 10px 20px; /* İç boşluk */
+            font-size: 1.5em; /* Yazı boyutu */
+            cursor: pointer; /* Fare imleci */
+            pointer-events: all; /* Tıklama izinleri */
+            transition: background 0.3s; /* Arka plan değişimi animasyonu */
+        }
+
+        .controls button:hover {
+            background: rgba(0, 0, 0, 0.8); /* Üzerine gelindiğinde daha koyu arka plan */
+        }
+
+        /* Galeri */
+        .gallery {
+            display: flex; /* Esnek düzen */
+            flex-wrap: wrap; /* Öğeleri birden fazla satıra taşı */
+            gap: 15px; /* Öğeler arasında boşluk */
+            justify-content: center; /* Öğeleri ortala */
+            padding: 20px; /* İç boşluk */
+        }
+
+        /* Galeri resimleri */
+        .gallery img {
+            width: 150px; /* Genişlik */
+            height: 150px; /* Yükseklik */
+            object-fit: cover; /* Kaplama */
+            cursor: pointer; /* Fare imleci */
+            border-radius: 10px; /* Köşe yuvarlatma */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Gölge */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasyon */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1); /* Üzerine gelindiğinde büyütme */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Daha güçlü gölge */
+        }
+
+        /* Mobil cihazlar için uyumlu tasarım */
+        @media (max-width: 768px) {
+            .slideshow {
+                width: 90%; /* Genişliği küçültme */
+                height: 300px; /* Yüksekliği küçültme */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="img/avatar.jpg" alt="Avatar" class="avatar"> <!-- Avatar resmi -->
+    <img src="img/logo.svg" alt="Logo" class="logo"> <!-- Logo resmi -->
+    <h1>Amtsgericht Essen</h1> <!-- Başlık -->
+    <p class="description">Kendimle ilgili kısa bir açıklama. Burada kendiniz, ilgi alanlarınız ve yetenekleriniz hakkında birkaç kelime yazabilirsiniz.</p> <!-- Açıklama metni -->
+</header>
+
+<section class="slideshow"> <!-- Slayt gösterisi bölümü -->
+    <div class="slides">
+        <img src="img/image1.jpg" alt="Slide 1"> <!-- İlk slayt -->
+        <img src="img/image2.jpg" alt="Slide 2"> <!-- İkinci slayt -->
+        <img src="img/image3.jpg" alt="Slide 3"> <!-- Üçüncü slayt -->
+        <img src="img/image4.jpg" alt="Slide 4"> <!-- Dördüncü slayt -->
+    </div>
+    <div class="controls"> <!-- Kontrol düğmeleri -->
+        <button class="prev">&#10094;</button> <!-- Geri düğmesi -->
+        <button class="next">&#10095;</button> <!-- İleri düğmesi -->
+    </div>
+</section>
+
+<!-- Resim galerisi -->
+<section class="gallery">
+    <img src="img/image1.jpg" alt="Resim 1"> <!-- İlk resim -->
+    <img src="img/image2.jpg" alt="Resim 2"> <!-- İkinci resim -->
+    <img src="img/image3.jpg" alt="Resim 3"> <!-- Üçüncü resim -->
+    <img src="img/image4.jpg" alt="Resim 4"> <!-- Dördüncü resim -->
+</section>
+
+<img src="img/new-doc.svg">
+
+<script>
+    // Slayt gösterisi için elemanları al
+    const slides = document.querySelector('.slides');
+    const slideImages = document.querySelectorAll('.slides img');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndex = 0; // Mevcut slayt indeksi
+    const totalSlides = slideImages.length; // Toplam slayt sayısı
+
+    // Slayt pozisyonunu güncelle
+    function updateSlidePosition() {
+        slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+    }
+
+    // Sonraki slaytı göster
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlidePosition();
+    }
+
+    // Önceki slaytı göster
+    function showPrevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlidePosition();
+    }
+
+    // Düğmelere tıklama olayları
+    prevButton.addEventListener('click', showPrevSlide);
+    nextButton.addEventListener('click', showNextSlide);
+
+    // Slaytları her 3 saniyede bir otomatik değiştir
+    setInterval(showNextSlide, 3000);
+</script>
+
+</body>
+</html>
